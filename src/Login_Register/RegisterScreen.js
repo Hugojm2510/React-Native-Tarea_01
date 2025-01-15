@@ -19,6 +19,8 @@ export function RegisterScreen ({navigation}) {
     setForm({ ...form, [field]: value });
   };
 
+  const [confirmPassword, setConfirmPassword] = useState('');
+
   const handleSubmit = () => {
     const { email, password, nick, name, lastName1, lastName2 } = form;
 
@@ -27,10 +29,16 @@ export function RegisterScreen ({navigation}) {
       return;
     }
 
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Las contraseñas no coinciden');
+      return;
+    }
+
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         Alert.alert('Registro exitoso', 'Usuario creado correctamente');
         console.log('Usuario registrado:', { nick, name, lastName1, lastName2 });
+        navigation.navigate('LoginScreen');
       })
       .catch((error) => {
         Alert.alert('Error', error.message);
@@ -72,14 +80,14 @@ export function RegisterScreen ({navigation}) {
         <TextInput
           style={styles.input}
           value={form.lastname1}
-          onChangeText={(value) => handleInputChange('lastname1', value)}
+          onChangeText={(value) => handleInputChange('lastName1', value)}
           placeholder="Introduzaca su primer apellido"
           placeholderTextColor="#868686"
         />
         <TextInput
           style={styles.input}
           value={form.lastname2}
-          onChangeText={(value) => handleInputChange('lastname2', value)}
+          onChangeText={(value) => handleInputChange('lastName2', value)}
           placeholder="Introduzaca su segundo apellido"
           placeholderTextColor="#868686"
         />
@@ -96,12 +104,14 @@ export function RegisterScreen ({navigation}) {
           onChangeText={(value) => handleInputChange('password', value)}
           placeholder="Introduzaca su contraseña"
           placeholderTextColor="#868686"
+          // secureTextEntry
         />
         <TextInput
           style={styles.input}
-          onChangeText={(value) => handleInputChange('password', value)}
+          onChangeText={(value) => setConfirmPassword(value)}
           placeholder="Repita contraseña"
           placeholderTextColor="#868686"
+          secureTextEntry
         />
         
         
