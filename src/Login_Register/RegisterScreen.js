@@ -36,7 +36,6 @@ export function RegisterScreen ({navigation}) {
 
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
-        Alert.alert('Registro exitoso', 'Usuario creado correctamente');
         console.log('Usuario registrado:', { nick, name, lastName1, lastName2 });
         navigation.navigate('LoginScreen');
       })
