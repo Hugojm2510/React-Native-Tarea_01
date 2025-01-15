@@ -19,7 +19,6 @@ export function LoginScreen({navigation}) {
 
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        Alert.alert('Éxito', 'Has iniciado sesión correctamente');
         navigation.navigate('HomeScreen');
       })
       .catch((error) => {
