@@ -36,7 +36,6 @@ export function RegisterScreen ({navigation}) {
 
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
-        Alert.alert('Registro exitoso', 'Usuario creado correctamente');
         console.log('Usuario registrado:', { nick, name, lastName1, lastName2 });
         navigation.navigate('LoginScreen');
       })
@@ -104,7 +103,7 @@ export function RegisterScreen ({navigation}) {
           onChangeText={(value) => handleInputChange('password', value)}
           placeholder="Introduzaca su contraseña"
           placeholderTextColor="#868686"
-          // secureTextEntry
+          secureTextEntry
         />
         <TextInput
           style={styles.input}

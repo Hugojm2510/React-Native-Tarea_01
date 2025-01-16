@@ -19,7 +19,6 @@ export function LoginScreen({navigation}) {
 
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        Alert.alert('Éxito', 'Has iniciado sesión correctamente');
         navigation.navigate('HomeScreen');
       })
       .catch((error) => {
@@ -56,6 +55,7 @@ export function LoginScreen({navigation}) {
             style={styles.inputContainer}
             placeholder='Introduzca su contraseña...'
             placeholderTextColor='#868686'
+            secureTextEntry
           />
         </View>
 
